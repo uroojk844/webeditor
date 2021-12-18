@@ -24,9 +24,9 @@
 
     <nav class="white">
         <div class="nav-item bold"><i class="fas fa-code"></i> Online Editor</div>
-        <div class="nav-item" onclick="pc()"><i class="fas fa-desktop"></i> Desktop view</div>
-        <a href="#" class="nav-item" download><i class="fas fa-download"></i> Download</a>
-        <div class="nav-item" id="theme" onclick="theme()"><i class="fa fa-clone"></i> Theme</div>
+        <div class="nav-item" onclick="pc()"><i class="fas fa-desktop"></i> <span>Desktop view</span></div>
+        <a href="#" class="nav-item" download><i class="fas fa-download"></i> <span>Download</span></a>
+        <div class="nav-item" id="theme" onclick="theme()"><i class="fa fa-adjust"></i> <span>Theme</span></div>
     </nav>
 
     <div class="row">
@@ -68,7 +68,7 @@
             $("#tab_pre")[0].contentWindow.document.body.innerHTML = $('textarea').val();
             $("#phone_pre")[0].contentWindow.document.body.innerHTML = $('textarea').val();
         }
-        
+
         $('textarea').keyup(function(e) {
             compile();
         })
