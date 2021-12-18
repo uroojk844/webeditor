@@ -56,6 +56,7 @@
         <iframe src="" frameborder="0" id="tab_pre"></iframe>
     </div>
 
+    <script src="js/FileSaver.js"></script>
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/myjs.js"></script>
     <script>
@@ -73,6 +74,12 @@
             $('.col, .btn, nav').toggleClass('white dark');
         });
 
+        $("nav a").click(function (e) { 
+            e.preventDefault();
+            userInput = $("textarea").val();
+            var blob = new Blob([userInput], { type: "text/plain;charset=utf-8" });
+            saveAs(blob, "code.htm");
+        });
     </script>
 
 </body>
