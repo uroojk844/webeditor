@@ -151,3 +151,13 @@ form{
 	width: 768px;
 	background: var(--white);
 }
+
+@media screen and (max-width:600px) {
+	.row{
+		grid-template-columns: 1fr;
+	}
+	
+	.nav-item span{
+		display: none;
+	}
+}
