@@ -17,10 +17,6 @@
 </head>
 
 <body onload="html_code()">
-         
-    <script>
-        // var file = `${Math.random()}`;
-    </script>
 
     <nav class="white">
         <div class="nav-item bold"><i class="fas fa-code"></i> Online Editor</div>
@@ -35,14 +31,14 @@
             <div class="title bold" id="lang">
                 <i class="fab fa-html5"></i> HTML, CSS & JavaScript
             </div>
-            <form method="post">
+            <div class="form">
                 <textarea title="Don't change default link and script href/src" name="html"></textarea>
                 <div class="btn_group">
-                    <button type="reset" class="btn" title="alt+C" accesskey="C">
-                        <i class="fas fa-wrench"></i> Reset</button>
-                    <div class="btn" id="preview" onclick="open_pre(event)&openFullscreen()">Preview</div>
+                    <div class="btn" title="alt+C" accesskey="C" onclick="html_code()">
+                        <i class="fas fa-wrench"></i> Reset</div>
+                    <div class="btn" id="preview" onclick="toggle_pre()">Preview</div>
                 </div>
-            </form>
+            </div>
         </div>
 
         <div class="col white" id="output">
@@ -51,8 +47,8 @@
         </div>
     </div>
 
-    <div id="pre_container">
-        <div class="w3-red w3-button w3-display-topright" onclick="close_pre()&closeFullscreen()">&times;</div>
+    <div id="pre_container" class="w3-hide">
+        <div class="w3-red w3-button w3-display-topright" onclick="toggle_pre()">&times;</div>
         <img src="img/phone.png" alt="phone_view" id="phone">
         <iframe src="" frameborder="0" id="phone_pre"></iframe>
 
