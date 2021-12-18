@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Web Editor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This site contains HTML, CSS and JavaScript tutorials with example. You can also contact us for making you website.">
+    <meta name="keywords" content="HTML,CSS,JavaScript,html tutorials, css tutorials, javascript tutorials, codeandkey, code and key, web designing, web page development, html example
+    ,css example, javascript example, heading in html, paragraph, video tag, audio tag, style tag, image, src, href, anchor tag, online editor, html compiler, html editor, css editor,
+    javascript editor, notepad">
+    <meta name="author" content="Urooj khan">
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="css/mycss.css">
+    <link rel="stylesheet" href="fontawesome-free/css/all.min.css">
+    <link rel="shortcut icon" href="logo.ico">
+</head>
+
+<body onload="html_code()">
+         
+    <script>
+        // var file = `${Math.random()}`;
+    </script>
+
+    <nav class="white">
+        <div class="nav-item bold"><i class="fas fa-code"></i> Online Editor</div>
+        <div class="nav-item" onclick="pc()"><i class="fas fa-desktop"></i> Desktop view</div>
+        <a href="#" class="nav-item" download><i class="fas fa-download"></i> Download</a>
+        <div class="nav-item" id="theme" onclick="theme()"><i class="fa fa-clone"></i> Theme</div>
+    </nav>
+
+    <div class="row">
+
+        <div class="col white" id="input">
+            <div class="title bold" id="lang">
+                <i class="fab fa-html5"></i> HTML, CSS & JavaScript
+            </div>
+            <form method="post">
+                <textarea title="Don't change default link and script href/src" name="html"></textarea>
+                <div class="btn_group">
+                    <button type="reset" class="btn" title="alt+C" accesskey="C">
+                        <i class="fas fa-wrench"></i> Reset</button>
+                    <div class="btn" id="preview" onclick="open_pre(event)&openFullscreen()">Preview</div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col white" id="output">
+            <div class="title bold"><i class="fa fa-desktop"></i> Result</div>
+            <iframe class="white" id="out" src=""></iframe>
+        </div>
+    </div>
+
+    <div id="pre_container">
+        <div class="w3-red w3-button w3-display-topright" onclick="close_pre()&closeFullscreen()">&times;</div>
+        <img src="img/phone.png" alt="phone_view" id="phone">
+        <iframe src="" frameborder="0" id="phone_pre"></iframe>
+
+        <img src="img/tab.png" alt="tab_view" id="tab">
+        <iframe src="" frameborder="0" id="tab_pre"></iframe>
+    </div>
+
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/myjs.js"></script>
+    <script>
+        function compile() {
+            $('#out')[0].contentWindow.document.body.innerHTML = $('textarea').val();
+            $("#tab_pre")[0].contentWindow.document.body.innerHTML = $('textarea').val();
+            $("#phone_pre")[0].contentWindow.document.body.innerHTML = $('textarea').val();
+        }
+        
+        $('textarea').keyup(function(e) {
+            compile();
+        })
+
+        $('#theme').click(function() {
+            $('.col, .btn, nav').toggleClass('white dark');
+        });
+
+    </script>
+
+</body>
+
+</html>
