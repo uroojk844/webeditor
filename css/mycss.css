@@ -3,27 +3,20 @@
 }
 
 :root{
-	--white: #fff;
+	--white: #e5e5e5;
 	--dark: #333;
 }
 
-.dark{
-	background-color: #111;
-	color: var(--white);
-}
 
 body{
-	background-color: #e5e5e5;
+	background-color: #ccc;
 	user-select: none;
-}
-
-.white{
-	background-color: var(--white);
 }
 
 nav{
 	display: grid;
 	grid-template-columns: auto max-content max-content max-content;
+	background-color: var(--white);
 }
 
 .nav-item {
@@ -47,18 +40,23 @@ a{
 
 .row{
 	display: grid;
+	grid-template-columns: max-content 1fr;
 	transition: .5s;
-	grid-template-columns: 1fr 1fr;
 	padding: 16px;
 	gap: 16px;
 }
 
-.row .col{
+.col{
+	background-color: var(--white);
 	display: grid;
 	padding: 16px;
 	gap: 16px;
 	grid-auto-rows: max-content auto;
 	height: calc(100vh - 75px);
+	overflow-x: auto;
+	resize: horizontal;
+	cursor: w-resize;
+	min-width: 550px;
 }
 
 .row .col .title{
@@ -72,6 +70,14 @@ a{
 	resize: none;
 	outline: none;
 	height: 100%;
+}
+
+iframe{
+	background-color: #fff;
+}
+
+textarea{
+	font-family: monospace;
 }
 
 .form{
@@ -105,8 +111,8 @@ a{
 }
 
 #pre_container {
-	position: absolute;
-	width: 1366px;
+	position: fixed;
+	width: 100%;
 	height: 100vh;
 	background: rgba(0, 0, 0, 0.8);
 	top: 0;
@@ -153,11 +159,24 @@ a{
 	background: var(--white);
 }
 
+.bodyDark{
+	color: #fff;
+	background-color: #191919;
+}
+
+.dark{
+	background-color: #222;
+	color: var(--white);
+}
+
 @media screen and (max-width:600px) {
 	.row{
 		grid-template-columns: 1fr;
 	}
-	
+	.row .col{
+		min-width: 100%;
+		resize: none;
+	}
 	.nav-item span{
 		display: none;
 	}

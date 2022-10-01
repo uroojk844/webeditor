@@ -17,42 +17,42 @@
 
 <body onload="html_code()">
 
-    <nav class="white">
+    <nav>
         <div class="nav-item bold"><i class="fas fa-code"></i> Online Editor</div>
         <div class="nav-item" onclick="pc()"><i class="fas fa-desktop"></i> <span>Desktop view</span></div>
         <a href="#" class="nav-item" download><i class="fas fa-download"></i> <span>Download</span></a>
-        <div class="nav-item" id="theme" onclick="theme()"><i class="fa fa-adjust"></i> <span>Theme</span></div>
+        <div class="nav-item" id="theme"><i class="fa fa-adjust"></i> <span>Theme</span></div>
     </nav>
 
     <div class="row">
-
-        <div class="col white" id="input">
+        <div class="col" id="input">
             <div class="title bold" id="lang">
                 <i class="fab fa-html5"></i> HTML, CSS & JavaScript
             </div>
             <div class="form">
-                <textarea title="Don't change default link and script href/src" name="html"></textarea>
+                <textarea title="Default text"></textarea>
                 <div class="btn_group">
                     <div class="btn" title="alt+C" accesskey="C" onclick="html_code()">
                         <i class="fas fa-wrench"></i> Reset</div>
-                    <div class="btn" id="preview" onclick="toggle_pre()">Preview</div>
+                        <div class="btn" onclick="compile()">Run</div>
+                        <div class="btn" id="preview" onclick="toggle_pre()">Preview</div>
                 </div>
             </div>
         </div>
 
-        <div class="col white" id="output">
+        <div class="col" id="output">
             <div class="title bold"><i class="fa fa-desktop"></i> Result</div>
-            <iframe class="white" id="out" src=""></iframe>
+            <iframe id="out"></iframe>
         </div>
     </div>
 
     <div id="pre_container" class="w3-hide">
         <div class="w3-red w3-button w3-display-topright" onclick="toggle_pre()">&times;</div>
         <img src="img/phone.png" alt="phone_view" id="phone">
-        <iframe src="" frameborder="0" id="phone_pre"></iframe>
+        <iframe frameborder="0" id="phone_pre"></iframe>
 
         <img src="img/tab.png" alt="tab_view" id="tab">
-        <iframe src="" frameborder="0" id="tab_pre"></iframe>
+        <iframe frameborder="0" id="tab_pre"></iframe>
     </div>
 
     <script src="js/FileSaver.js"></script>
@@ -60,7 +60,7 @@
     <script src="js/myjs.js"></script>
     <script>
         function compile() {
-            $('#out')[0].contentWindow.document.body.innerHTML = $('textarea').val();
+            $('#out')[0].contentWindow.document.body.innerHTML = ($('textarea').val());
             $("#tab_pre")[0].contentWindow.document.body.innerHTML = $('textarea').val();
             $("#phone_pre")[0].contentWindow.document.body.innerHTML = $('textarea').val();
         }
@@ -69,9 +69,21 @@
             compile();
         })
 
+        var theme = localStorage.getItem('theme');
         $('#theme').click(function() {
-            $('.col, .btn, nav').toggleClass('white dark');
+            if(theme!=null){
+                localStorage.removeItem('theme');
+            }else{
+                localStorage.setItem('theme','1');
+            }
+            $('body,textarea').toggleClass('bodyDark');
+            $('.col, .btn, nav').toggleClass('dark');
         });
+
+        if(theme!=null){
+            $('body,textarea').toggleClass('bodyDark');
+            $('.col, .btn, nav').toggleClass('dark');
+        }
 
         $("nav a").click(function (e) { 
             e.preventDefault();
@@ -79,6 +91,15 @@
             var blob = new Blob([userInput], { type: "text/plain;charset=utf-8" });
             saveAs(blob, "code.htm");
         });
+
+        $('textarea').keydown(function (e) {
+            if (e.key === 'Tab') {
+            e.preventDefault();
+            const TAB_SIZE = 2;
+            document.execCommand('insertText', true, '  '.repeat(TAB_SIZE));
+            }  
+        });
+        
     </script>
 
 </body>
